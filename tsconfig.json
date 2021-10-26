@@ -10,7 +10,11 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
+
+    "strict": false,//元々true
+    "strictPropertyInitialization": false,//追加
+    "strictNullChecks": false,//追加
+
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
