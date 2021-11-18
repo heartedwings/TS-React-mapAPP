@@ -10,7 +10,7 @@ export function Home() {
 
       <div className="autoplay-slider">
         <div className="slide"><img src={`${process.env.PUBLIC_URL}/img/image1.jpg`} /></div>
-        <div className="slide"><img src={`${process.env.PUBLIC_URL}/img/image2.jpg`} /></div>
+        <div className="slide"><img src={`${process.env.PUBLIC_URL}/img/image1.jpg`} /></div>
         <div className="slide"><img src={`${process.env.PUBLIC_URL}/img/image1.jpg`} /></div>
         <div className="slide"><img src={`${process.env.PUBLIC_URL}/img/image1.jpg`} /></div>
         <div className="slide"><img src={`${process.env.PUBLIC_URL}/img/image1.jpg`} /></div>
@@ -23,6 +23,8 @@ export function Home() {
         <div className="slide"><img src={`${process.env.PUBLIC_URL}/img/image1.jpg`} /></div>
         <div className="slide"><img src={`${process.env.PUBLIC_URL}/img/image1.jpg`} /></div>
       </div>
+
+      <div className="word">地図アプリだよ！</div>
 
       
     </div>

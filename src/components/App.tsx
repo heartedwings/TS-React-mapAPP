@@ -15,6 +15,7 @@ import { MyPage } from "./MyPage";
 import { Map } from "./Map";
 import { Place } from "./Place";
 import { Home } from "./Home";
+import { Geocoder } from "./Geocoder";
 import { setLoginUser, deleteLoginUser, mapList } from "../actions";
 import "./../CSS/App.css";
 
@@ -106,8 +107,8 @@ function App() {
   };
 
   const setList = () => {
-    let mapItem:any = []
-    mapItem.push({
+    let mapItem2:any = []
+    mapItem2.push({
       name:"",
       addNumber: "",
             address: "",
@@ -115,7 +116,7 @@ function App() {
             longitude: "",
             image:"",
     })
-    dispatch(mapList(mapItem))
+    dispatch(mapList(mapItem2))
   };
 
   useEffect(() => {
@@ -172,6 +173,7 @@ function App() {
                 <li>
                   <Link to={`/place`}> Place </Link>
                 </li>
+                
               </ul>
             </div>
             {/* <!--ここまでメニュー--> */}
@@ -181,12 +183,15 @@ function App() {
         <div className="pageLink"></div>
 
 
+
+
         <Switch>
           {/* 　//URLのパスが'/myPage'のみの時にMyPageを表示する */}
           <Route path="/myPage" exact component={MyPage} />
           <Route path="/map" exact component={Map} />
           <Route path="/place" exact component={Place} />
           <Route path="/home" exact component={Home} />
+          <Route path="/geocoder" exact component={Geocoder} />
         </Switch>
       </Router>
     </React.Fragment>

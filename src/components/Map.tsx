@@ -39,10 +39,10 @@ const positionMyParentsHouse = {
 };
 
 //埼玉県行田市城西2-6-26
-// const positionYuri = {
-//   lat: 36.13278,
-//   lng: 139.45238,
-// };
+const positionYuri = {
+  lat: 36.13278,
+  lng: 139.45238,
+};
 
 const positionPlace = {
   lat: 0,
@@ -75,14 +75,29 @@ export const Map: () => JSX.Element = () => {
   const getList = useSelector(listSelector);
   const getPosition = useSelector(positonoSelector)
 ;
-  const [addNumber, setAddNumber] = useState<string>(""),
+  const
+    [addNumber, setAddNumber] = useState<string>(""),
     [address, setAddress] = useState<string>(""),
     [image, setImage] = useState<string>(""),
     [lists, setLists] = useState<any>([]),
     [size, setSize] = useState<undefined | google.maps.Size>(undefined),
     [selected, setSelected] = useState<any>(null),
-    [latitude, setLatitude] = useState<string>(""), //経度
-    [longitude, setLongitude] = useState<string>(""); //緯度
+    [latitude, setLatitude] = useState<any>(""), //経度
+    [longitude, setLongitude] = useState<any>(""), //緯度
+    [LArray, setLArray] = useState<any>([]);
+
+// useEffect (() => {実行したい処理},[依存変数の配列])
+    useEffect ( () => {
+      console.log('useEffectが実行されました！');
+      
+      lists.length !== 0 && setLists (getList)
+      console.log(getList);
+      // const newArray = latObjAllay.map ( ( a1:any, index:any ) => {
+      //   const newObj = Object.assign ( { lng:0 }, a1 )
+      //   newObj.lng = lngObjAllay.filter ( ( a2:any, ij:any ) => ij === index )[0].lng
+      //   return newObj
+      // })
+    }, [getList])
 
   // 郵便番号入力後、住所自動入力
   // 郵便番号検索API
@@ -102,6 +117,7 @@ export const Map: () => JSX.Element = () => {
         });
     }
   }, [addNumber]);
+
 
   const inputAddNumber = (e: any) => {
     setAddNumber(e.target.value);
@@ -266,56 +282,97 @@ for ( let jjj = 0; jjj < lngObjAllay.length; jjj++) {
 // console.log (final);
 
 
-// console.log(matchAllArray);
+// // console.log(matchAllArray);
+// const newArray = latObjAllay.map ( ( a1:any, index:any ) => {
+//   a1.lng = lngObjAllay.filter ( ( a2:any, ij:any ) => ij === index )[0].lng
+//   return a1
+// })
+// console.log ( newArray );
+
+// const newArray2 = [];
+// for ( let oneij = 0; oneij < newArray.length; oneij++ ) {
+//   console.log(newArray[oneij])
+//   newArray2.push (newArray[oneij])
+// }
+
+// const lngObjAllays = [ {lng:200}, {lng:300}, {lng:400} ]
+// const latObjAllays = [ {lat:10}, {lat:20}, {lat:30} ]
+
 const newArray = latObjAllay.map ( ( a1:any, index:any ) => {
-  a1.lng = lngObjAllay.filter ( ( a2:any, ij:any ) => ij === index )[0].lng
-  return a1
-})
-console.log ( newArray );
-
-const newArray2 = [];
-for ( let oneij = 0; oneij < newArray.length; oneij++ ) {
-  console.log(newArray[oneij])
-  newArray2.push (newArray[oneij])
-}
-
-
-
-
-const positionPlace = newArray2.map( (place:any, index:any) => {
-  // <div key={index}>
-//     {/* <p>{place.lat}</p>
-//   <p>{place.lng}</p>
-//  */}
-
-    <Marker
-                  key={index}
-                  position={{
-                    lat: place.lat,
-                    lng: place.lng,
-                  }}
-                //   onMouseOver={() => {
-                //     setSelected({
-                //       lat: place.lat,
-                //       lng: place.lng,
-                //   })
-                // }}
-                />
-  //  </div>
-
+  const newObj = Object.assign ( { lng:0 }, a1 )
+  newObj.lng = lngObjAllay.filter ( ( a2:any, ij:any ) => ij === index )[0].lng
   
+  return newObj
+})
 
-              });
+// for ( let oneij = 0; oneij < newArray.length; oneij++ ) {
+//   console.log(newArray[oneij])
+//   console.log(newArray[oneij].lat)
+//   console.log(newArray[oneij].lng)
+// }
+
+// const addLArray = () => {
+//   const newArr = [
+//     ...LArray,
+//     {
+//       lat: latitude,
+//       lng: longitude,
+//     },
+//   ];
+//   setLArray(newArr);
+//   console.log(newArr);
+  
+// }
+
+// const marker = new google.maps.Marker ({
+//   position : newArray
+// })
+
+console.log(newArray);
+
+
+// const positionPlace = newArray
+
+const positionPlace = newArray.map( (place:any, index:any) => (
+  <div key={index}>
+    <p>{place.lat}</p>
+    <p>{place.lng}</p>
+  </div>
+));
+
+// const positionPlace = newArray2
+
+// const positionPlace = newArray.map( ( p: any, index:any ) => (
+//   <Marker
+//     key={index}
+//     position={{
+//       lat: p.lat,
+//       lng: p.lng,
+
+//     }}
+//     // onMouseOver={() => {
+//     //   setSelected({
+//     //     lat: p.lat,
+//     //     lng: p.lng,
+//     // });
+//     // }}
+//   />
+// ))
 
 
 
 
-// const array = newArray.forEach (function (item, index, array) {
+
+// const array = newArray.forEach (function (itcdem, index, array) {
 //   console.log(item, index);
 // })
 // console.log(array);
 
 
+
+// var geocoder = new google.maps.Geocoder(); geocoder.getLatLng(address：'千葉県市川市', callback:function);
+
+// 　callback_function(latlng) { //処理を記述 }
 
 
 
@@ -323,9 +380,15 @@ const positionPlace = newArray2.map( (place:any, index:any) => {
 
   return (
     <div>
-      <div>{ positionPlace }</div>
-      
+
       <div>
+        <h2>私のお気に入り MAP</h2>
+      </div>
+
+      <div>{ positionPlace }</div>
+      {/* <div>{ newArray }</div> */}
+      
+      {/* <div>
         郵便番号 :
         <input type="text" value={addNumber} onChange={inputAddNumber} />
       </div>
@@ -358,7 +421,7 @@ const positionPlace = newArray2.map( (place:any, index:any) => {
 
       <div>
         <button onClick={addList}>追加</button>
-      </div>
+      </div> */}
 
 
       <LoadScript
@@ -366,13 +429,13 @@ const positionPlace = newArray2.map( (place:any, index:any) => {
         onLoad={() => createOffsetSize()}
       >
         <GoogleMap mapContainerStyle={mapStyle} center={center} zoom={11}>
-          <Marker
+          {/* <Marker
             position={positionMyHouse} //ここ
             onMouseOver={() => {
               setSelected(positionMyHouse); //ここ
               // マウスオーバーで<InfoWindow>が描画。
             }}
-          />
+          /> */}
           {/* <Marker
             position={positionMyParentsHouse} //ここ
             onMouseOver={() => {
@@ -380,29 +443,38 @@ const positionPlace = newArray2.map( (place:any, index:any) => {
               // マウスオーバーで<InfoWindow>が描画。
             }}
           /> */}
-          {/* <Marker
+          <Marker
             position={positionYuri} //ここ
             onMouseOver={() => {
               setSelected(positionYuri); //ここ
               // マウスオーバーで<InfoWindow>が描画。
             }}
+          />
+          
+          {/* <Marker
+            defaultPosition={newArray}
           /> */}
+          
 
-          {newArray.map( ( place: any, index:any ) => (
+          { newArray.map( ( p: any, index:any ) => (
                 <Marker
                   key={index}
                   position={{
-                    lat: place.lat,
-                    lng: place.lng,
+                    lat: p.lat,
+                    lng: p.lng,
+
                   }}
                   // onMouseOver={() => {
-                  //   setSelected(place);
+                  //   setSelected({
+                  //     lat: p.lat,
+                  //     lng: p.lng,
+                  // });
                   // }}
                 />
               ))
             }
 
-{positionPlace}
+{/* {positionPlace} */}
 
 
           {selected ? (

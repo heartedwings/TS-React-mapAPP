@@ -53,6 +53,13 @@ export const MyPage: () => JSX.Element = () => {
       handleSubmit,
     } = useForm<valData>();
 
+    // // useEffect (() => {実行したい処理},[依存変数の配列])
+    // useEffect ( () => {
+    //   console.log('useEffectが実行されました！');
+      
+    //   lists.length !== 0 && setLists (getList)
+    // }, [getList])
+
 
 
   useEffect(() => {

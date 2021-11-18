@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 // import { GoogleApiWrapper, Map } from 'google-maps-react';
 import { useHistory } from "react-router-dom";
+import { Geocoder } from "./Geocoder";
 import "./../CSS/App.css";
 
 // interface Geo {
@@ -14,7 +15,7 @@ const ErrorText = () => (
 
 export function Place() {
   const history = useHistory();
-  // const handleLink = (path: any) => history.push(path);
+  // const handÚleLink = (path: any) => history.push(path);
 
   const [isAvailable, setAvailable] = useState<any>(false),
     [position, setPosition] = useState<any>({
@@ -178,13 +179,15 @@ export function Place() {
 
         {/* <div onLoad={initialize}> */}
         <div>
-          <h2>住所から検索</h2>
+          {/* <h2>住所から検索</h2>
           <input type="text" value={place} onChange={inputPlace} />
           <button onClick={search}>検索する</button>
           <div>{searchPlace}</div>
           <div>latitude : </div>
-          <div>longitude : </div>
+          <div>longitude : </div> */}
           {/* <div>{idokeido}</div> */}
+
+          <Geocoder/>
         </div>
       </div>
     </div>
